@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFD3E1",
     paddingHorizontal: 16,
     paddingTop: 16,
+
   },
 
   cabecalho: {

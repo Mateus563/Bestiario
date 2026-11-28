@@ -157,12 +157,14 @@ const styles = StyleSheet.create({
         backgroundColor: "#FFD3E1",
         paddingHorizontal: 16,
         paddingTop: 16,
+
     },
 
     botao: {
         flexDirection: 'row',
         gap: 10,
         marginTop: 8,
+        marginBottom: 20,
 
     },
 
