@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
-import { StyleSheet, Text, View, Button, Pressable, FlatList, TextInput, } from "react-native";
+import { StyleSheet, Text, View, Button, Pressable, FlatList, TextInput, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link, Stack } from "expo-router";
 
@@ -24,12 +24,29 @@ export default function Bestiario() {
     }
 
     async function salvarBestiario() {
+
+        if (nome.trim() === "") {
+            Alert.alert("Adicione o nome da criatura");
+            return;
+        }
+
+        if (habitat.trim() === "") {
+            Alert.alert("Adicione o habitat da criatura");
+            return;
+        }
+
+
+        if (Number(perigo) < 1 || Number(perigo) > 5 || perigo === "") {
+            Alert.alert("O perigo deve ser entre 1 e 5!");
+            return;
+        }
+
         if (idEditando === 0) {
             await fetch(API_URL, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    nome: nome, 
+                    nome: nome,
                     habitat: habitat,
                     perigo: perigo,
                     poder: poder,
@@ -40,7 +57,7 @@ export default function Bestiario() {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    nome: nome, 
+                    nome: nome,
                     habitat: habitat,
                     perigo: perigo,
                     poder: poder,
@@ -58,23 +75,23 @@ export default function Bestiario() {
     }
 
     async function excluir(id) {
-    await fetch(`${API_URL}/${id}`, {
-      method: "DELETE",
-    });
-    buscarBestiario();
-  }
+        await fetch(`${API_URL}/${id}`, {
+            method: "DELETE",
+        });
+        buscarBestiario();
+    }
 
-  async function editar(item) {
-    setIdEditando(item.id);
-    setNome(item.nome);
-    setHabitat(item.habitat);
-    setPerigo(item.perigo);
-    setPoder(item.poder);
-  }
+    async function editar(item) {
+        setIdEditando(item.id);
+        setNome(item.nome);
+        setHabitat(item.habitat);
+        setPerigo(item.perigo);
+        setPoder(item.poder);
+    }
 
-  useEffect(() => {
-    buscarBestiario();
-  }, []);
+    useEffect(() => {
+        buscarBestiario();
+    }, []);
 
 
     return (
@@ -114,18 +131,18 @@ export default function Bestiario() {
                 renderItem={({ item }) => (
                     <View>
                         <Text style={styles.item}>
-                          Nome: {item.nome}
-                          {"\n"}
-                          Habitat: {item.habitat}
-                          {"\n"}
-                          Perigo: {item.perigo}
-                          {"\n"}
-                          Poder: {item.poder}
+                            Nome: {item.nome}
+                            {"\n"}
+                            Habitat: {item.habitat}
+                            {"\n"}
+                            Perigo: {item.perigo}
+                            {"\n"}
+                            Poder: {item.poder}
 
                         </Text>
                         <View style={styles.botao}>
-                        <Button title="🗑️" onPress={() => excluir(item.id)} />
-                        <Button title="✏️" onPress={() => editar(item)} />
+                            <Button title="🗑️" onPress={() => excluir(item.id)} />
+                            <Button title="✏️" onPress={() => editar(item)} />
                         </View>
                     </View>
                 )}
@@ -143,8 +160,8 @@ const styles = StyleSheet.create({
     },
 
     botao: {
-        flexDirection: 'row', 
-        gap: 10,              
+        flexDirection: 'row',
+        gap: 10,
         marginTop: 8,
 
     },
