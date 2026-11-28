@@ -30,7 +30,7 @@ export default function Inicio() {
 const styles = StyleSheet.create({
   tela: {
     flex: 1,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#FFD3E1",
     paddingHorizontal: 16,
     paddingTop: 16,
   },
@@ -50,12 +50,12 @@ const styles = StyleSheet.create({
 
   subtitulo: {
     fontSize: 14,
-    color: "#6B7280",
+    color: "#2e3a55",
     marginTop: 2,
   },
 
   cartao: {
-    backgroundColor: "#F1F3F6",
+    backgroundColor: "#FFF1A6",
     borderRadius: 12,
     padding: 16,
     marginBottom: 12,
@@ -65,18 +65,18 @@ const styles = StyleSheet.create({
   cartaoTitulo: {
     fontSize: 16,
     fontWeight: "600",
-    color: "#111827",
+    color: "#4e6597",
   },
 
   detalhe: {
     fontSize: 14,
-    color: "#374151",
+    color: "#576c8d",
   },
 
   link: {
     fontSize: 15,
     fontWeight: "600",
-    color: "#2354D6",
+    color: "#3e60be",
     marginTop: 4,
   },
 });
